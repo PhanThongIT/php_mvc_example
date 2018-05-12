@@ -1,0 +1,40 @@
+﻿TỔ CHỨC CÂY THƯ MỤC TRONG PROJECT php_example
+
+   - admin: là folder chứa source của admin
+   - libs: là folder chứa các thư viện xử lý cho ứng dụng
+
+Trong folder admin ta lại chia ra làm ba folder con:
+
+   - widgets: chứa các file như header.php, footer.php của layout
+   - database: chứa các file xử lý dữ liệu. Như trong hình mình có file user.php là dùng chứa các hàm xử lý database bảng tb_user.
+    -modules: chứa các module con. Hiện tại mình có module common và module users
+
+
+CÁC TỔ CHỨC NHƯ SAU:
+b1: Viết những cái gì chung nhất . Thư viện libs trước ( Lớp connect database).
+    -database:
+        +   db_connect(),db_close() : kết nối/hủy DB.
+        +   db_get_list($sql) : trả về 1 mảng  danh sách;
+        +   db_get_row($sql) : Trả về 1 record duy nhất .
+        +   db_excute($sql) : Trả về true/false dùng để thực hiện truy vấn.
+    -Session:
+        +set_Session($key , $value) : gán session .
+        +get_session($key): Lấy giá trị của session theo key .  kiểm tra tồn tại (true/false).
+        +remove_session($key) : Xóa giá trị của session.
+    -role:
+        +set_logged(tên username ,  level ) :  khai báo key= 'ss_user_token' => array('username' => tên username ,  'level' => $level .
+        +set_logout($key) : sử dụng hàm remove_sesion($key)  để hủy sesison
+        +is_logged() ; Kiểm tra xem đã đăng nhập hay chưa ?
+        +is_admin (): Kiểm tra xem có phải admin hay không ? trước khi kiểm tra phải check đăng nhập.
+b2: Viết file index.php
+    +Nhiệm vụ: Tiếp nhận các request từ client đồng thời điều hướng đến các module khác để xử lý các request này .
+    +Cấu trúc URL admin có dạng như sau : localhost:81/php_example/admin/index.php?m=ten_module&a=ten_action
+    +IN_SITE : hằng số  bảo về project . Tức là phải thông qua index.php trong admin mới có thể điều hướng đi các trang khác.
+    VD: ...../php_example/Source_File/libs/database.php => FALSE. Hacker dể xâm nhập không thể truy cập/. !defined('IN_SITE') . kiểm tra .
+b3: Thao tác với databse thêm xóa sữa ở module user.
+    +TẠO TRANG LOGIN .trong common
+    +_Tạo trang logout trong common
+    +Chia layout
+    +Vào lib viết thư viện helper.php để
+    +Xây dựng model lấy ra tên theo username . admin/database/user.php
+

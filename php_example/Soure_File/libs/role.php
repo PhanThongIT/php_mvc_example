@@ -35,4 +35,16 @@ function is_admin()
     }
     return false;
 }
+
+
+// Lấy thông tin ussernaem của người đăng nhập
+function get_current_username(){
+    $user = is_logged(); // kiểm tra đăng nhập
+   return (isset($user['username'])? $user['username']: '');
+
+}
+function get_current_level(){
+    $level = is_logged(); // Kiểm tra đăng nhập
+     return (isset($level['level']) ? $level['level']: '');
+}
 ?>

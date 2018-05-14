@@ -37,4 +37,28 @@ b3: Thao tác với databse thêm xóa sữa ở module user.
     +Chia layout
     +Vào lib viết thư viện helper.php để
     +Xây dựng model lấy ra tên theo username . admin/database/user.php
+    +Tạo trang logout / sử dụng base url để đưa về trang login , xóa câu chào Admin .
+b4: Viết hàm phân trang :
+    + Viết hàm  function create_link($uri, $filter = array())
+        2 tham số như sau :$url là full đường dẫn đến thư mục của admin, ví dụ http://localhost/php_example/admin.
+                            $filter là một mảng gồm các cặp key và value của chuỗi query string.
+    +
+    $link: là đường dẫn full của trang hiển thị danh sách co đính kèm tham số page={page}. Bắt buộc kèm theo tham số page={page} bởi lúc hiển thị URL cho các nút phân trang nó sẽ replace tham số này thành các con số tương ứng.
+     $total_records: Tổng số records trong CSDL
+     $current_page: Trang hiện tại
+     $limit: Giới hạn bao nhiêu records trên một trang
+     Kể quả hàm này sẽ trả về một mảng gồm ba tham số:
+
+     start: Vị trí records đầu tiên trong danh sách kết quả truy vấn
+     limit: Số records muốn lấy trên một trang
+     html: Nội dung html phân trang
+     Thuật toán phân trang coi ở : https://freetuts.net/thuat-toan-phan-trang-voi-php-va-mysql-550.html
+     +Công thức tính start :
+     Trang 01: start = (1 - 1) * 10 =  0, tương đương với (current_page - 1) * limit.
+     Trang 02: start = (2 - 1) * 10 = 10, tương đương với (current_page - 1) * limit.
+     Trang 03: start = (3 - 1) * 10 = 20, tương đương với (current_page - 1) * limit.
+     Trang 04: start = (4 - 1) * 10 = 30, tương đương với (current_page - 1) * limit.
+     Công thức tổng  quát: start = (current_page - 1) * limit.
+
+
 

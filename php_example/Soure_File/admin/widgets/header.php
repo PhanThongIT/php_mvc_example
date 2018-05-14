@@ -80,6 +80,7 @@ if (!defined('IN_SITE')) die('The request not found');
 </head>
 <body>
 <div id="container">
+    <?php if(is_admin()) { ?>
     <div id="header">
         <ul>
             <li>
@@ -93,9 +94,10 @@ if (!defined('IN_SITE')) die('The request not found');
             </li>
         </ul>
         <div>
-            Xin chào Admin |
-            <a href="#">Login</a>
-            <a href="#">Out</a>
+            Xin chào <?php echo get_current_username(); ?> |
+            <a href="<?php base_url('admin/?m=common&a=login');?>">Login</a>
+            <a href="<?php echo base_url('admin/?m=common&a=logout');?>">Logout</a>
         </div>
     </div>
+    <?php } ?>
     <div id="content">
